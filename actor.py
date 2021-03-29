@@ -51,7 +51,7 @@ class Actor:
         pygame.draw.circle(self.screen, (self.r, self.g, self.b), (self.x[0], self.x[1]), self.chars['r'])
 
     def calc_next(self, d_actors, actors):
-        i2=0
+        i2 = 0
         for i in d_actors:
             if i == 0:
                 pass
@@ -64,10 +64,9 @@ class Actor:
                 p1y = self.d[1]
                 self.d[1] = (y1 - y2 + p1y)
                 self.d[0] = (x2 - x1 + p1x)
-                self.d/=(self.d[0]**2+self.d[1]**2)**0.5
+                self.d /= (self.d[0] ** 2 + self.d[1] ** 2) ** 0.5
                 # TODO this is messed up because the direction is being calculated with the already changed direction of the other particle
-            i2+=1
-
+            i2 += 1
 
             # TODO here in elif's we will program the conditions which decide where the balls will go
             # actors will be used for nearest actor characteristics
