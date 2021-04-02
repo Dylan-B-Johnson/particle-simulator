@@ -39,10 +39,10 @@ def actor_directions(positions, res=(1920, 1080)):
 class Actor:
     h = 1
 
-    def __init__(self, screen, x, d, chars={'s': 1, 'm': 1, 'r': 10}, res=(1920, 1080), rgb=(14, 242, 208)):
+    def __init__(self, screen, x, d, s=1, chars={'m': 1, 'r': 10}, res=(1920, 1080), rgb=(14, 242, 208)):
         self.x = x
         self.res = res
-        self.v = np.array(d) * chars['s']
+        self.v = np.array(d) * s
         self.vtmp = self.v
         self.chars = chars
         self.r, self.g, self.b = rgb
