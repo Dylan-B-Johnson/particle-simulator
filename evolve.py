@@ -7,6 +7,12 @@ import actor as act
 import pygame
 import random
 
+# controls:
+# w/s (while mousing over circle): increase/decrease circle radius
+# a/d (while mousing over circle): decrease/increase circle speed
+# up arrow/down arrow: increase/decrease all circle radii
+# left arrow/right arrow: decrease/increase all circle speeds
+
 act.h = 2
 n = 200
 screen_width, screen_height = 1920, 1080
@@ -29,6 +35,24 @@ while not done:
         for i in actors: i.v *= 1.05
     if pressed[pygame.K_LEFT]:
         for i in actors: i.v /= 1.05
+    if pressed[pygame.K_w]:
+        for i in actors:
+            if np.linalg.norm(i.x - np.array(pygame.mouse.get_pos())) < i.chars['r']:
+                i.chars['m'] *= 1.05
+                i.chars['r'] *= 1.05 ** 0.5
+    if pressed[pygame.K_s]:
+        for i in actors:
+            if np.linalg.norm(i.x - np.array(pygame.mouse.get_pos())) < i.chars['r']:
+                i.chars['m'] /= 1.05
+                i.chars['r'] /= 1.05 ** 0.5
+    if pressed[pygame.K_a]:
+        for i in actors:
+            if np.linalg.norm(i.x - np.array(pygame.mouse.get_pos())) < i.chars['r']:
+                i.v /= 1.05
+    if pressed[pygame.K_d]:
+        for i in actors:
+            if np.linalg.norm(i.x - np.array(pygame.mouse.get_pos())) < i.chars['r']:
+                i.v *= 1.05
     if pressed[pygame.K_UP]:
         for i in actors:
             i.chars['m'] *= 1.05
