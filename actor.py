@@ -37,39 +37,35 @@ def actor_directions(positions, res=(1920, 1080)):
 
 
 class Actor:
+    h = 1
 
-    def __init__(self, screen, x, d, chars, res=(1920, 1080)):
+    def __init__(self, screen, x, d, chars={'s': 1, 'm': 1, 'r': 10}, res=(1920, 1080), rgb=(14, 242, 208)):
         self.x = x
         self.res = res
-        # random.random()
-        self.d = np.array(d)
+        self.v = np.array(d) * chars['s']
+        self.vtmp = self.v
         self.chars = chars
-        self.r = 14
-        self.g = 242
-        self.b = 208
+        self.r, self.g, self.b = rgb
         self.screen = screen
         pygame.draw.circle(self.screen, (self.r, self.g, self.b), (self.x[0], self.x[1]), self.chars['r'])
 
     def calc_next(self, d_actors, actors):
-        i2 = 0
-        for i in d_actors:
-            if i == 0:
-                pass
-            elif i <= 20:
-                x2 = actors[i2].x[0]
-                y2 = actors[i2].x[1]
-                x1 = self.x[0]
-                y1 = self.x[1]
-                p1x = self.d[0]
-                p1y = self.d[1]
-                self.d[1] = (y1 - y2 + p1y)
-                self.d[0] = (x2 - x1 + p1x)
-                self.d /= (self.d[0] ** 2 + self.d[1] ** 2) ** 0.5
-                # TODO this is messed up because the direction is being calculated with the already changed direction of the other particle
-            i2 += 1
+        if np.all(self.vtmp == self.v):
+            i2 = 0
+            for i in d_actors:
+                # This assumes that no two balls will make it to the same position
+                if i == 0:
+                    pass
+                elif i <= (actors[i2].chars['r'] + self.chars['r']):
+                    m1, m2 = self.chars['m'], actors[i2].chars['m']
+                    v1, v2, x1, x2 = self.v, actors[i2].v, self.x, actors[i2].x
+                    self.vtmp = v1 - np.dot(v1 - v2, x1 - x2) * np.linalg.norm(x1 - x2) ** -2 * (x1 - x2) * 2 * m2 / (
+                            m1 + m2)
+                    actors[i2].vtmp = v2 - np.dot(v2 - v1, x2 - x1) * np.linalg.norm(x2 - x1) ** -2 * (
+                            x2 - x1) * 2 * m1 / (
+                                              m1 + m2)
+                i2 += 1
 
-            # TODO here in elif's we will program the conditions which decide where the balls will go
-            # actors will be used for nearest actor characteristics
         if self.x[0] < 0:
             self.x[0] = 0
         if self.x[1] < 0:
@@ -79,18 +75,15 @@ class Actor:
         if self.x[1] > self.res[1]:
             self.x[1] = self.res[1]
         if self.x[1] == 0:
-            self.d[1] *= -1
+            self.vtmp[1] *= -1
         if self.x[0] == self.res[0]:
-            self.d[0] *= -1
+            self.vtmp[0] *= -1
         if self.x[1] == self.res[1]:
-            self.d[1] *= -1
+            self.vtmp[1] *= -1
         if self.x[0] == 0:
-            self.d[0] *= -1
-
-    def set_x(self, x):
-        self.x = x
+            self.vtmp[0] *= -1
 
     def update(self):
-        tmp = self.x + self.d * self.chars['s']
-        self.x = tmp
-        pygame.draw.circle(self.screen, (self.r, self.g, self.b), (tmp[0], tmp[1]), self.chars['r'])
+        self.v = self.vtmp
+        self.x = self.x + self.v * Actor.h
+        pygame.draw.circle(self.screen, (self.r, self.g, self.b), (self.x[0], self.x[1]), self.chars['r'])
