@@ -56,7 +56,8 @@ class Actor:
                 # This assumes that no two balls will make it to the same position
                 if i == 0:
                     pass
-                elif i <= (actors[i2].chars['r'] + self.chars['r']) and np.dot(actors[i2].x-self.x,self.v-actors[i2].v)>0:
+                elif i <= (actors[i2].chars['r'] + self.chars['r']) and np.dot(actors[i2].x - self.x,
+                                                                               self.v - actors[i2].v) > 0:
                     m1, m2 = self.chars['m'], actors[i2].chars['m']
                     v1, v2, x1, x2 = self.v, actors[i2].v, self.x, actors[i2].x
                     self.vtmp = v1 - np.dot(v1 - v2, x1 - x2) * np.linalg.norm(x1 - x2) ** -2 * (x1 - x2) * 2 * m2 / (

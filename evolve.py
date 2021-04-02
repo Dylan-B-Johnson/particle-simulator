@@ -1,5 +1,6 @@
 import sys
-import time
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import numpy as np
 import actor as act
@@ -22,7 +23,7 @@ while not done:
     for i in actors: i.update()
     a = np.array([i.x for i in actors])
     d_actors = np.linalg.norm(a - a[:, None], axis=-1)
-    for i in range(len(actors)): actors[i].calc_next(d_actors[i], actors)
+    for i in range(len(Lactors)): actors[i].calc_next(d_actors[i], actors)
     pygame.display.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
