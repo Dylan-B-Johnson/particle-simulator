@@ -1,10 +1,11 @@
 import sys
 import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import numpy as np
 import actor as act
 import pygame
 
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+
 
 act.h = 2
 n = 100
