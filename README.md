@@ -1,8 +1,9 @@
 # particle-simulator
-To Use:
-Run the evolve.py file. 
-Set n=[number of bodies you want to simulate].
-Set the screenwidth, screenheight to your resolution.
+To Use: \n
+Run the evolve.py file.  \n
+Set n=[number of bodies you want to simulate].\n
+Set act.h=[simulation step size]\n
+Set the screenwidth, screenheight to your resolution. \n
 
 Controls:
 w/s (while mousing over circle): increase/decrease circle radius
