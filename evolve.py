@@ -48,6 +48,10 @@ while not done:
         for i in actors: i.v *= 1.05
     if pressed[pygame.K_LEFT]:
         for i in actors: i.v /= 1.05
+    if pressed[pygame.K_q]:
+        act.Actor.h /= 1.05
+    if pressed[pygame.K_e]:
+        act.Actor.h *= 1.05
     if pressed[pygame.K_w]:
         for i in actors:
             if np.linalg.norm(i.x - np.array(pygame.mouse.get_pos())) < i.chars['r']:
