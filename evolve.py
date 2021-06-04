@@ -25,6 +25,7 @@ import random
 # a/d (while mousing over circle): decrease/increase circle speed
 # up arrow/down arrow: increase/decrease all circle radii
 # left arrow/right arrow: decrease/increase all circle speeds
+# q/e: decrease/increase step size
 
 act.h = 2
 n = 200
