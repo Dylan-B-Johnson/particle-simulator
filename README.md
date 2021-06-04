@@ -1,4 +1,5 @@
 # Elastic Collision Particle Simulator
+All collisions are elastic and conserve energy. Particles deflect off of the walls of the screen accurately.
 ## To Use: 
 
 * Run the evolve.py file.  
