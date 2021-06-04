@@ -1,5 +1,5 @@
 # Elastic Collision Particle Simulator
-##To Use: 
+## To Use: 
 
 * Run the evolve.py file.  
 
@@ -9,7 +9,7 @@
 
 * Set the screenwidth, screenheight to your resolution. 
 
-##Controls:
+## Controls:
 * w/s (while mousing over circle): increase/decrease circle radius
 
 * a/d (while mousing over circle): decrease/increase circle speed
