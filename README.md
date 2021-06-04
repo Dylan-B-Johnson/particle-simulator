@@ -11,11 +11,12 @@ All collisions are elastic and conserve energy. Particles deflect off of the wal
 * Set the screen_width, screen_height variables to your resolution. 
 
 ## Controls:
-* w/s (while mousing over circle): increase/decrease circle radius.
+* Pressing the w/s keys (while mousing over circle) increases/decreases the circle's radius.
 
-* a/d (while mousing over circle): decrease/increase circle speed.
+* Pressing the a/d keys (while mousing over circle) decreases/increases the circle's speed.
 
-* up arrow/down arrow: increase/decrease all circle radii.
+* Pressing the up arrow/down arrow keys increases/decreases all of the circles' radii.
 
-* left arrow/right arrow: decrease/increase all circle speeds.
+* Pressing the left arrow/right arrow keys decreases/increases all of the circles' speeds.
 
+* Pressing the q/e keys decreases/increases the time-step size of the simulation.
