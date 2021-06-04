@@ -1,5 +1,5 @@
-# Elastic Collision Particle Simulator
-All collisions are elastic and conserve energy. Particles deflect off of the walls of the screen accurately.
+# 2D Elastic Collision Particle Simulator
+All collisions are elastic and conserve kenetic energy and momentum. Particles deflect off of the walls of the screen accurately. Increasing the raddius of a particle also increases its mass (proportional to the radius squared).
 ## To Use: 
 
 * Run the evolve.py file.  
